@@ -1,0 +1,29 @@
+<mat-toolbar color="primary" *ngIf="estaLogado">
+  <span>Vendas</span>
+  <span class="example-spacer"></span>
+  <div class="menu-item">
+    <a routerLink="home">Home</a>
+  </div>
+  <div class="menu-item">
+    <mat-list-item>
+      <a class="tamanho-fonte" [matMenuTriggerFor]="produto">
+        Produto
+      </a>
+      <mat-menu #produto="matMenu">
+        <button routerLink="produto/cadastrar" mat-menu-item>
+          Cadastrar
+        </button>
+        <button routerLink="produto" mat-menu-item>Listar</button>
+      </mat-menu>
+    </mat-list-item>
+  </div>
+  <div class="menu-item">
+    <a routerLink="pedido/detalhes">Pedidos</a>
+  </div>
+  <div style="margin-right: 30px;" class="menu-item">
+    <a (click)="sair()" style="cursor: pointer">Sair</a>
+  </div>
+  <div style="color: white;" class="demo-section">
+    <a routerLink="pedido" style="cursor: pointer;"><mat-icon matBadge="{{listarItensDoCarrinho().length}}" matBadgeColor="warn">shopping_cart</mat-icon></a>
+  </div>
+</mat-toolbar>

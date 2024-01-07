@@ -1,0 +1,36 @@
+<div class="container">
+  <h1>Finalize Seu Pedido!</h1>
+  <form class="example-form" [formGroup]="formPedido">
+    <mat-form-field class="example-full-width">
+      <mat-label>Pagamento</mat-label>
+      <mat-select formControlName="pagamento">
+        <mat-option>Pagamento</mat-option>
+        <mat-option value="CARTAO_CREDITO">Cartão</mat-option>
+        <mat-option value="DINHEIRO">Dinheiro</mat-option>
+        <mat-option value="PIX">Pix</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field style="margin-left: 10px;" class="example-full-width">
+      <mat-label>Parcelas</mat-label>
+      <mat-select formControlName="parcelas">
+        <mat-option>Parcelas</mat-option>
+        <mat-option value="1">1x</mat-option>
+        <mat-option value="2">2x</mat-option>
+        <mat-option value="3">3x</mat-option>
+        <mat-option value="4">4x</mat-option>
+        <mat-option value="5">5x</mat-option>
+        <mat-option value="6">6x</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div>
+      <ul style="list-style: none; padding: 0; margin: 0;" *ngFor="let item of itens">
+        <li style="font-size: 16px; margin-bottom: 8px;">Produto: {{item.produto.descricao}}</li>
+        <li style="font-size: 16px; margin-bottom: 8px;">Preço: {{item.produto.precoUnitario | currency: 'BRL'}}</li>
+        <li style="font-size: 16px; margin-bottom: 8px;">Quantidade: {{item.quantidade}}</li>
+        <mat-divider></mat-divider>
+      </ul>
+    </div>
+    <button color="primary" class="botao" mat-raised-button (click)="salvarPedido()">Finalizar Pedido</button>
+  </form>
+</div>

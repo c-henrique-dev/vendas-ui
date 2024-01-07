@@ -1,0 +1,41 @@
+<div style="margin-top: 20px;">
+  <h1 class="center">Cadastro de Usuários</h1>
+</div>
+  <form [formGroup]="formUsuario">
+    <div class="flex">
+    <mat-form-field class="example-full-width">
+      <mat-label>login</mat-label>
+      <input matInput placeholder="Nome do usuário" formControlName="login">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Senha</mat-label>
+      <input matInput placeholder="Senha do usuário" formControlName="senha">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Admin</mat-label>
+      <mat-select formControlName="admin">
+        <mat-option>Admin</mat-option>
+        <mat-option value="true">Sim</mat-option>
+        <mat-option value="false">Não</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Nome</mat-label>
+      <input matInput placeholder="Nome do usuário" formControlName="nome">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>CPF</mat-label>
+      <input matInput placeholder="CPF do usuário" formControlName="cpf">
+    </mat-form-field>
+
+    <app-endereco></app-endereco>
+    
+    <div class="botao">
+      <button [disabled]="formUsuario.invalid" mat-raised-button color="accent" (click)="salvarUsuario()">Salvar</button>
+    </div>
+  </div>
+  </form>

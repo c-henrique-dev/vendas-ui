@@ -1,0 +1,54 @@
+<div *ngIf="produto" id="container">
+  <div class="imagem">
+    <img width="700px" height="490px" [src]="produto.nomeImagem" alt="{{ produto.descricao }}"/>
+  </div>
+  <div class="compra">
+    <h2 style="font-size: 24px; margin-bottom: 10px">
+      {{ produto.descricao }}
+    </h2>
+
+    <div style="margin-top: 20px;">
+      <span style="font-size: 25px">Preço: </span>
+      <span style="font-size: 25px; color: green">{{
+        produto.precoUnitario | currency : "BRL" : "symbol" : "1.2-2"}}</span>
+    </div>
+
+    <form [formGroup]="meuFormulario">
+      <div style="margin-top: 10px">
+        <mat-form-field class="example-full-width">
+          <mat-label>Quantidade</mat-label>
+          <input matInput placeholder="Quantidade do produto" formControlName="quantidade"/>
+        </mat-form-field>
+      </div>
+    </form>
+
+    <div>
+      <button color="primary" class="botao" mat-raised-button routerLink="pedido" (click)="realizarPedido()">Comprar Agora</button>
+    </div>
+    <div style="margin-top: 20px">
+      <button color="primary" mat-raised-button class="botao" (click)="adicionarAoCarrinho()"> Adicionar ao Carrinho </button>
+    </div>
+  </div>
+  <div class="informacoes">
+    <div>
+      <h3 style="font-size: 20px">Mais Informações</h3>
+      <ul style="list-style: none; padding: 0; margin: 0">
+        <li style="font-size: 16px; margin-bottom: 8px">Peso: kg</li>
+        <li style="font-size: 16px; margin-bottom: 8px">Dimensões: rwrey</li>
+        <li style="font-size: 16px; margin-bottom: 8px">Cor: rtey</li>
+        <li style="font-size: 16px; margin-bottom: 8px">Material: rtr</li>
+      </ul>
+    </div>
+  
+    <div style="margin-left: 60px;">
+      <h3 style="font-size: 20px;">Características</h3>
+      <ul style="list-style: none; padding: 0; margin: 0">
+        <li style="font-size: 16px; margin-bottom: 8px">Resistente a impactos</li>
+        <li style="font-size: 16px; margin-bottom: 8px">Fácil de limpar</li>
+        <li style="font-size: 16px; margin-bottom: 8px">Garantia de 1 ano</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+

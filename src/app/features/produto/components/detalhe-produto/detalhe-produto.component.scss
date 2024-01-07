@@ -1,0 +1,28 @@
+#container {
+    display: grid;
+    grid-template-columns: 800px 551px;
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.informacoes {
+    display: flex;
+    flex-direction: row;
+    margin-left: 15px;
+    padding: 10px;
+}
+
+.compra {
+    text-align: center;
+    padding: 20px;
+    word-wrap: break-word;
+    margin-top: 4em;
+}
+
+.botao {
+    padding: 15px 30px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+}

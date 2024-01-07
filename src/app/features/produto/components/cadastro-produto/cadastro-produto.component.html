@@ -1,0 +1,22 @@
+
+<div class="center">
+  <h1>Cadastro de Produtos</h1>
+  <form class="example-form" [formGroup]="formProduto">
+    <mat-form-field class="example-full-width">
+      <mat-label>Descrição</mat-label>
+      <input matInput placeholder="Descrição do produto" formControlName="descricao">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Preço</mat-label>
+      <input matInput placeholder="Preço do produto" formControlName="preco">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Quantidade no Estoque</mat-label>
+      <input matInput placeholder="Quantidade no Estoque" formControlName="estoque">
+    </mat-form-field>
+    <div class="botao">
+      <button mat-raised-button color="primary" (click)="salvarProduto()">Salvar</button>
+    </div>  </form>
+</div>

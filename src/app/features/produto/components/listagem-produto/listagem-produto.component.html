@@ -1,0 +1,38 @@
+<div class="card-container">
+  <mat-card class="example-card" *ngFor="let produto of produtos">
+    <div class="card-content">
+      <img style="cursor: pointer; width: 295px; height: 170px;" [routerLink]="['/produto', produto.id]" mat-card-image [src]="produto.nomeImagem" alt="Photo of a Shiba Inu">
+      <mat-card-content style="margin-top: 20px;">
+        <div>
+          <p class="produto-descricao">
+            {{produto.descricao}}
+          </p>
+          <p class="produto-preco">
+            {{produto.precoUnitario | currency: 'BRL'}}
+          </p>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="chamarEdicao(produto)">
+            <mat-icon>edit</mat-icon>
+            <span>Editar</span>
+          </button>
+          <button mat-menu-item (click)="excluirProduto(produto.id)">
+            <mat-icon>delete</mat-icon>
+            <span>Excluir</span>
+          </button>
+          <input type="file" (change)="adicionarImagem(produto.id, $event)" style="display: none;" #fileInput>
+          <button mat-menu-item (click)="fileInput.click()">
+            <mat-icon>attach_file</mat-icon>
+            <span>Adicionar Imagem</span>
+          </button>      
+         </mat-menu>
+      </mat-card-actions>
+    </div>
+  </mat-card>
+</div>
+
