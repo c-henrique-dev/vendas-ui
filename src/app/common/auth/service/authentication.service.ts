@@ -59,10 +59,6 @@ export class AuthenticationService extends HttpBaseService {
     return this.httpGet(`${this.endpoint}/usuarioLogado`);
   }
 
-  obterUsuario() {
-    return this.subjectUsuario.asObservable();
-  }
-
   private decodeToken(token: string) {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace('-', '+').replace('_', '/');
