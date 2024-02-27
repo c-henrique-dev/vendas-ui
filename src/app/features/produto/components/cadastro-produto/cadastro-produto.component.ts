@@ -41,6 +41,7 @@ export class CadastroProdutoComponent implements OnInit {
 
   criarFormulario() {
     this.formProduto = this.formBuilder.group({
+      nomeProduto: ['', Validators.required],
       descricao: ['', Validators.required],
       preco: ['', Validators.required],
       estoque: ['', Validators.required],
@@ -56,6 +57,7 @@ export class CadastroProdutoComponent implements OnInit {
     .subscribe((produto: Produto) => {
       this.produto = produto;
       this.formProduto.controls['descricao'].setValue(this.produto.descricao),
+      this.formProduto.controls['nomeProduto'].setValue(this.produto.nomeProduto),
       this.formProduto.controls['preco'].setValue(this.produto.precoUnitario),
       this.formProduto.controls['estoque'].setValue(this.produto.estoque.quantidadeDisponivel)
     });
@@ -84,6 +86,7 @@ export class CadastroProdutoComponent implements OnInit {
   salvarProduto() {
     if(this.formProduto.touched && this.formProduto.dirty) {
       const payload: Produto = {
+        nomeProduto: this.formProduto.controls['nomeProduto'].value,
         descricao: this.formProduto.controls['descricao'].value,
         precoUnitario: this.formProduto.controls['preco'].value,
         estoque: {
