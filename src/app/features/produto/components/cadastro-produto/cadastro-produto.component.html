@@ -1,7 +1,11 @@
+<div class="flex mt-9 mb-4 flex-col items-center h-full">
+  <h1>Cadastro de Produto</h1>
+  <form class="grid grid-cols-2 example-form" [formGroup]="formProduto">
+    <mat-form-field class="example-full-width">
+      <mat-label>Nome Produto</mat-label>
+      <input matInput placeholder="Nome do produto" formControlName="nomeProduto">
+    </mat-form-field>
 
-<div class="center">
-  <h1>Cadastro de Produtos</h1>
-  <form class="example-form" [formGroup]="formProduto">
     <mat-form-field class="example-full-width">
       <mat-label>Descrição</mat-label>
       <input matInput placeholder="Descrição do produto" formControlName="descricao">
@@ -16,7 +20,8 @@
       <mat-label>Quantidade no Estoque</mat-label>
       <input matInput placeholder="Quantidade no Estoque" formControlName="estoque">
     </mat-form-field>
-    <div class="botao">
+    <div class="ml-2">
       <button mat-raised-button color="primary" (click)="salvarProduto()">Salvar</button>
-    </div>  </form>
+    </div>  
+  </form>
 </div>

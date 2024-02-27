@@ -6,21 +6,6 @@
   background-color: #f5f5f5;
 }
 
-.example-full-width {
-  width: 100%; 
-  margin-bottom: 20px; 
-}
-
-.mat-form-field {
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
 .mat-label {
   font-weight: bold;
 }
@@ -28,21 +13,4 @@ h1 {
 .mat-error {
   font-size: 14px;
   color: #d9534f;
-}
-
-.button-container {
-  display: flex;
-  justify-content: center;
-}
-
-button {
-  width: 300px;
-}
-
-.container {
-  display: flex;
-  justify-content: center; 
-  align-items: center;     
-  height: 100%;
-  width: 100%;
 }

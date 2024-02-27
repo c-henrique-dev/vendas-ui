@@ -1,29 +1,56 @@
 <mat-toolbar color="primary" *ngIf="estaLogado">
+  <button class="md:invisible" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <div class="no-underline m-2 cursor-pointer ">
+      <a class="" routerLink="home" mat-menu-item>Home</a>
+    </div>
+    <button mat-menu-item [matMenuTriggerFor]="submenu">
+      <span>Produto</span>
+    </button>
+    <mat-menu #submenu="matMenu">
+      <button routerLink="produto/cadastrar" mat-menu-item>
+        <span>Cadastrar</span>
+      </button>
+      <button routerLink="produto" mat-menu-item>
+        <span>Listar</span>
+      </button>
+    </mat-menu>
+    <div class="no-underline m-2 cursor-pointer ">
+      <a class="" routerLink="pedido/detalhes" mat-menu-item>Pedidos</a>
+    </div>
+    <div class="no-underline m-2 cursor-pointer ">
+      <a (click)="sair()" style="cursor: pointer" mat-menu-item>Sair</a>
+    </div>
+  </mat-menu>
   <span>Vendas</span>
-  <span class="example-spacer"></span>
-  <div class="menu-item">
-    <a routerLink="home">Home</a>
-  </div>
-  <div class="menu-item">
-    <mat-list-item>
-      <a class="tamanho-fonte" [matMenuTriggerFor]="produto">
-        Produto
-      </a>
-      <mat-menu #produto="matMenu">
-        <button routerLink="produto/cadastrar" mat-menu-item>
-          Cadastrar
-        </button>
-        <button routerLink="produto" mat-menu-item>Listar</button>
-      </mat-menu>
-    </mat-list-item>
-  </div>
-  <div class="menu-item">
-    <a routerLink="pedido/detalhes">Pedidos</a>
-  </div>
-  <div style="margin-right: 30px;" class="menu-item">
-    <a (click)="sair()" style="cursor: pointer">Sair</a>
-  </div>
-  <div style="color: white;" class="demo-section">
-    <a routerLink="pedido" style="cursor: pointer;"><mat-icon matBadge="{{listarItensDoCarrinho().length}}" matBadgeColor="warn">shopping_cart</mat-icon></a>
+  <div class="md:flex justify-end w-screen hidden">
+    <div class="no-underline m-2 cursor-pointer ">
+      <a class="" routerLink="home">Home</a>
+    </div>
+    <div class="no-underline m-2 cursor-pointer">
+      <mat-list-item>
+        <a class="text-slate-50" [matMenuTriggerFor]="produto">
+          Produto
+        </a>
+        <mat-menu #produto="matMenu">
+          <button routerLink="produto/cadastrar" mat-menu-item>
+            Cadastrar
+          </button>
+          <button routerLink="produto" mat-menu-item>Listar</button>
+        </mat-menu>
+      </mat-list-item>
+    </div>
+    <div class="no-underline m-2 cursor-pointer">
+      <a routerLink="pedido/detalhes">Pedidos</a>
+    </div>
+    <div style="margin-right: 30px;" class="no-underline m-2 cursor-pointer">
+      <a (click)="sair()" style="cursor: pointer">Sair</a>
+    </div>
+    <div class="no-underline m-2 cursor-pointer">
+      <a routerLink="pedido" style="cursor: pointer;"><mat-icon matBadge="{{listarItensDoCarrinho().length}}"
+          matBadgeColor="warn">shopping_cart</mat-icon></a>
+    </div>
   </div>
 </mat-toolbar>

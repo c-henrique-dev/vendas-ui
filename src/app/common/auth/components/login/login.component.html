@@ -1,26 +1,30 @@
-<div class="container">
-  <form class="example-form" [formGroup]="loginForm">
-    <div style="text-align: center;">
-      <img height="70px" src="assets/imagens/usuario.png" alt="">
-      <h1 style="margin-top: 10px;">Bem-Vindo!</h1>
-   </div>     
-    <mat-form-field class="example-full-width">
+<div class="flex mx-auto justify-center items-center h-screen bg-slate-300">
+  
+  <form class="max-w-96" [formGroup]="loginForm">
+  
+    <div class="flex justify-center">
+    <div>
+      <img class="w-28" src="assets/imagens/usuario.png" alt="">
+   </div>   
+  </div>  
+
+    <mat-form-field class="w-full mt-7">
       <mat-label>Email</mat-label>
       <input type="email" matInput placeholder="Ex. pat@example.com" formControlName="login">
       <mat-error>Please enter a valid email address</mat-error>
       <mat-error>Email is <strong>required</strong></mat-error>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="w-full">
       <mat-label>Password</mat-label>
       <input type="password" matInput formControlName="senha">
       <mat-error>Please enter a valid email address</mat-error>
       <mat-error>Email is <strong>required</strong></mat-error>
     </mat-form-field>
   
-    <div class="button-container">
-      <button mat-raised-button color="primary" (click)="login()">Entrar</button>
-      <button style="margin-left: 15px;" mat-raised-button color="accent" (click)="exibirDialogCadastroUsuario()">Cadastrar-se</button>
+    <div class="flex">
+      <button class="w-52" mat-raised-button color="primary" (click)="login()">Entrar</button>
+      <button class="w-52 ml-2" mat-raised-button color="primary" (click)="exibirDialogCadastroUsuario()">Cadastrar-se</button>
     </div>
   </form>
 </div>
