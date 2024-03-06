@@ -2,6 +2,8 @@ import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpBaseService } from 'src/app/shared/http-base/http-base.service';
 import { Produto } from '../models/produto.model';
+import { HttpParams } from '@angular/common/http';
+import { Produtos } from '../models/produtos.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,9 +15,20 @@ export class ProdutoService extends HttpBaseService {
     super(injector);
   }
 
-  getProdutos(): Observable<Produto[]> {
-    return this.httpGet(this.endpoint);
+  getProdutos(nomeProduto?: string, page?: number, size?: number): Observable<Produtos> {
+    let params = new HttpParams();
+    if (nomeProduto) {
+      params = params.set('nomeProduto', nomeProduto);
+    }
+    if (page) {
+      params = params.set('page', page);
+    }
+    if (size) {
+      params = params.set('size', size);
+    }
+    return this.httpGet(this.endpoint, params);
   }
+
 
   criarProduto(payload: Produto) {
     return this.httpPost(`${this.endpoint}`, payload);

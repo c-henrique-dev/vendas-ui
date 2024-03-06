@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HttpBaseService {
   private readonly httpClient!: HttpClient;
@@ -18,8 +18,8 @@ export class HttpBaseService {
     this.httpClient = injector.get(HttpClient);
   }
 
-  protected httpGet(endpoint: string): Observable<any> {
-    return this.httpClient.get(`${this.apiBase}${endpoint}`);
+  protected httpGet(endpoint: string, params?: HttpParams): Observable<any> {
+    return this.httpClient.get(`${this.apiBase}${endpoint}`, { params });
   }
 
   protected httpPost(endpoint: string, dados: any): Observable<any> {
