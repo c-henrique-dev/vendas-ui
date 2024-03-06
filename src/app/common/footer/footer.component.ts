@@ -5,23 +5,16 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+  styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
- 
-  @Input() menu!: any[];
   estaLogado: boolean = false;
 
-  constructor(
-    private authService: AuthenticationService,
-    private router: Router,
-  ){}
+  constructor(private authService: AuthenticationService) {}
 
   ngOnInit(): void {
-    this.authService.usuarioEstaLogado()
-    .subscribe(estaLogado => {
+    this.authService.usuarioEstaLogado().subscribe((estaLogado) => {
       this.estaLogado = estaLogado;
-    })
+    });
   }
-
 }

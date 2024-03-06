@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ProdutoService } from '../../service/produto.service';
 import { Produto } from '../../models/produto.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CarrinhoService } from 'src/app/shared/carrinho/carrinho.service';
+import { CarrinhoService } from 'src/app/features/carrinho/carrinho.service'; 
 import { Item } from 'src/app/features/pedido/model/item.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './detalhe-produto.component.html',
   styleUrls: ['./detalhe-produto.component.scss'],
 })
-export class DetalheProdutoComponent implements OnInit {
+export class DetalheProdutoComponent implements OnInit{
   produto!: Produto;
   produtoId!: number;
   meuFormulario: FormGroup;
@@ -21,7 +21,7 @@ export class DetalheProdutoComponent implements OnInit {
     private carrinhoService: CarrinhoService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) {
     this.meuFormulario = this.formBuilder.group({
       quantidade: ['', Validators.required],
@@ -30,13 +30,16 @@ export class DetalheProdutoComponent implements OnInit {
 
   ngOnInit(): void {
     const idParam = this.activatedRoute.snapshot.paramMap.get('id');
+
     if (idParam !== null) {
       this.produtoId = +idParam;
       this.buscarProdutoPeloId();
     }
+
     this.meuFormulario = this.formBuilder.group({
       quantidade: ['1', Validators.required],
     });
+
   }
 
   buscarProdutoPeloId() {
@@ -52,7 +55,8 @@ export class DetalheProdutoComponent implements OnInit {
       produto: this.produto,
       quantidade: this.meuFormulario.controls['quantidade'].value,
     };
-    return this.carrinhoService.adicionarItemAoCarrinho(item);
+
+    this.carrinhoService.adicionarItemAoCarrinho(item);
   }
 
   realizarPedido() {

@@ -5,7 +5,7 @@ import { Login } from '../../models/login.interface';
 import { AuthenticationService } from '../../service/authentication.service';
 import { SnackBarService } from 'src/app/shared/snack-bar/snack-bar.service';
 import { CadastroUsuarioComponent } from 'src/app/features/usuario/components/cadastro-usuario/cadastro-usuario.component';
-import { DialogService } from 'src/app/shared/dialog/service/dialog.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private snackBarService: SnackBarService,
-    private dialogService: DialogService
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +52,9 @@ export class LoginComponent implements OnInit {
   }
 
   exibirDialogCadastroUsuario() {
-    return this.dialogService.openDialog(0, CadastroUsuarioComponent, "Cadastrar Usuário");
+    this.dialog.open(CadastroUsuarioComponent, {
+      data: { titulo: "Cadastrar Usuário" },
+      height: "60%",
+    });
   }
 }

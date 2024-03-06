@@ -17,7 +17,7 @@ export class ListagemPedidoComponent implements OnInit {
   constructor(
     private pedidoService: PedidoService,
     private authenticationService: AuthenticationService
-  ){}
+  ) { }
 
   async ngOnInit(): Promise<void> {
     const login = this.authenticationService.obterUsuarioLogado();
@@ -30,5 +30,5 @@ export class ListagemPedidoComponent implements OnInit {
   buscarPedidoPeloLogin() {
     return this.pedidoService.getPedidoPeloLogin(this.login.login);
   }
-  
+
 }

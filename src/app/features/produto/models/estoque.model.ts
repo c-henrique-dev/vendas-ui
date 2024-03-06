@@ -1,3 +1,3 @@
 export interface Estoque {
-    quantidadeDisponivel: number;
+  quantidadeDisponivel: number;
 }

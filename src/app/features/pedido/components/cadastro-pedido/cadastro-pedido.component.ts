@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CarrinhoService } from 'src/app/shared/carrinho/carrinho.service';
+import { CarrinhoService } from 'src/app/features/carrinho/carrinho.service';
 import { Item } from '../../model/item.model';
 import { AuthenticationService } from 'src/app/common/auth/service/authentication.service';
 import { Pedido } from '../../model/pedido.model';
@@ -19,6 +19,7 @@ export class CadastroPedidoComponent implements OnInit {
   itens!: Item[];
   pedido!: Pedido;
   id!: number;
+  estaVazio = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,43 +32,64 @@ export class CadastroPedidoComponent implements OnInit {
 
   ngOnInit(): void {
     this.criarFormulario();
-    this.itens = this.buscarItensDoCarrinho();
-    this.autenthicationService.obterUsuarioLogado().subscribe((usuario) => {
-       this.id = usuario.id || 0;
-    })
-  }
 
-  criarPedido(payload: PedidoSalvar) {
-    this.pedidoService.criarPedido(payload).pipe(
-    ).subscribe((resposta) => {
-      this.snackBarService.open('Pedido realizado com sucesso!');
+    this.carrinhoService.obterItensCarrinho().subscribe((itens) => {
+      this.itens = itens;
+      this.estaVazio = this.itens.length === 0;
+    });
+
+    this.carrinhoService.getCarrinhoAtualizado().subscribe((quantidade) => {
+      this.estaVazio = quantidade === 0;
+    });
+
+    this.autenthicationService.obterUsuarioLogado().subscribe((usuario) => {
+      this.id = usuario.id || 0;
     });
   }
 
+  criarPedido(payload: PedidoSalvar) {
+    this.pedidoService
+      .criarPedido(payload)
+      .pipe()
+      .subscribe((resposta) => {
+        this.snackBarService.open('Pedido realizado com sucesso!');
+      });
+  }
+
   salvarPedido() {
-    const itensFormatados = this.itens.map(item => ({
+    const itensFormatados = this.itens.map((item) => ({
       produto: item.produto.id || 0,
       quantidade: item.quantidade,
     }));
-      const payload: PedidoSalvar = {
-        itens: itensFormatados,
-        usuario: this.id,
-        parcelas: parseInt(this.formPedido.controls['parcelas'].value),
-        formaDePagamento: this.formPedido.controls['pagamento'].value,
-      };
-    
-      const estaCriado = this.criarPedido(payload);
 
-      if(this.formPedido.valid) {
-        this.carrinhoService.resetarCarrinho()
-      }
-      
-      this.router.navigate(['pedido/detalhes'])
-      
+    const payload: PedidoSalvar = {
+      itens: itensFormatados,
+      usuario: this.id,
+      parcelas: parseInt(this.formPedido.controls['parcelas'].value),
+      formaDePagamento: this.formPedido.controls['pagamento'].value,
+    };
+
+    this.criarPedido(payload);
+
+    if (this.formPedido.valid) {
+      this.carrinhoService.resetarCarrinho().subscribe((resposta) => {
+        this.carrinhoService.obterItensCarrinho().subscribe((itens) => {
+          this.itens = itens;
+        });
+      });
     }
+    
+    this.router.navigate(['pedido/detalhes']);
+  }
 
-  buscarItensDoCarrinho() {
-    return this.carrinhoService.obterItensCarrinho();
+  excluirItemDoCarrinho(id: number | undefined) {
+    if (id != undefined) {
+      this.carrinhoService.removerItemDoCarrinho(id).subscribe((resposta) => {
+        this.carrinhoService.obterItensCarrinho().subscribe((itens) => {
+          this.itens = itens;
+        });
+      });
+    }
   }
 
   criarFormulario() {
