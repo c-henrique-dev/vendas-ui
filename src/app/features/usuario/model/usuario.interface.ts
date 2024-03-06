@@ -1,4 +1,4 @@
-import { Endereco } from "src/app/shared/endereco/model/endereco.model";
+import { Endereco } from "src/app/features/usuario/model/endereco.model";
 
 export interface Usuario {
     id?: number;

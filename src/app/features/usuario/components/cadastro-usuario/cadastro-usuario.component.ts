@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from '../../service/usuario.service';
 import { Usuario } from '../../model/usuario.interface';
-import { EnderecoComponent } from 'src/app/shared/endereco/endereco.component';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,8 +10,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./cadastro-usuario.component.scss'],
 })
 export class CadastroUsuarioComponent implements OnInit {
-  @ViewChild(EnderecoComponent, { static: true })
-  cadastroEndereco!: EnderecoComponent;
   formUsuario!: FormGroup;
 
   constructor(
@@ -32,7 +29,13 @@ export class CadastroUsuarioComponent implements OnInit {
       admin: ['', Validators.required],
       nome: ['', Validators.required],
       cpf: ['', Validators.required],
-      endereco: this.cadastroEndereco.criarFormulario(),
+      rua: ['', Validators.required],
+      complemento: ['', Validators.required],
+      numero: ['', Validators.required],
+      cep: ['', Validators.required],
+      cidade: ['', Validators.required],
+      estado: ['', Validators.required],
+      bairro: ['', Validators.required],
     });
   }
 
@@ -57,7 +60,15 @@ export class CadastroUsuarioComponent implements OnInit {
         admin: this.formUsuario.controls['admin'].value,
         nome: this.formUsuario.controls['nome'].value,
         cpf: this.formUsuario.controls['cpf'].value,
-        endereco: this.cadastroEndereco.valoresControl(),
+        endereco: {
+          rua: this.formUsuario.controls['rua'].value,
+          complemento: this.formUsuario.controls['complemento'].value,
+          numero: this.formUsuario.controls['numero'].value,
+          cep: this.formUsuario.controls['cep'].value,
+          cidade: this.formUsuario.controls['cidade'].value,
+          estado: this.formUsuario.controls['estado'].value,
+          bairro: this.formUsuario.controls['bairro'].value,    
+        }
       };
       this.criarUsuario(payload);
     }
