@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProdutoService } from '../../service/produto.service';
 import { Produto } from '../../models/produto.model';
-import { DialogService } from 'src/app/shared/dialog/service/dialog.service';
-import { ConfirmacaoDialogComponent } from 'src/app/features/produto/components/confirmacao-dialog/confirmacao-dialog.component';
-import { Router } from '@angular/router';
+import { ConfirmacaoDialogComponent } from 'src/app/shared/confirmacao-dialog/confirmacao-dialog.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-listagem',
@@ -12,15 +13,38 @@ import { Router } from '@angular/router';
 })
 export class ListagemProdutoComponent implements OnInit {
   produtos: Produto[] = [];
+  nomeProduto!: string;
+  currentPage: number = 0;
+  totalProdutos: number = 0;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private readonly produtoService: ProdutoService,
-    private dialogService: DialogService,
-    private router: Router
+    public dialog: MatDialog,
+    private router: Router,
+    private activatedRouter: ActivatedRoute
   ) {}
 
+  ngAfterViewInit() {
+    this.atualizarProdutos(this.paginator.pageIndex, this.paginator.pageSize);
+  }
+
   ngOnInit(): void {
-    this.buscarProdutos();
+    this.activatedRouter.queryParams.subscribe((params) => {
+      this.nomeProduto = params['nome'];
+
+      this.atualizarProdutos(this.paginator.pageIndex, this.paginator.pageSize);
+    });
+  }
+
+  atualizarProdutos(pageIndex: number, pageSize: number) {
+    this.produtoService
+      .getProdutos(this.nomeProduto, pageIndex, pageSize)
+      .subscribe((result) => {
+        this.produtos = result.content;
+        this.totalProdutos = result.totalElements;
+      });
   }
 
   adicionarImagem(id: number | undefined, event: any): void {
@@ -40,14 +64,20 @@ export class ListagemProdutoComponent implements OnInit {
   }
 
   excluirProduto(id: number | undefined) {
-    if (id != undefined) {
-      this.dialogService.openDialog(id, ConfirmacaoDialogComponent);
-    }
-  }
+    const dialog = this.dialog.open(ConfirmacaoDialogComponent, {
+      data: { id: id },
+      height: '140px',
+    });
 
-  buscarProdutos() {
-    this.produtoService.getProdutos().subscribe((produtos: Produto[]) => {
-      this.produtos = produtos;
+    dialog.afterClosed().subscribe((remove) => {
+      if (remove && id != undefined) {
+        this.produtoService.excluirProduto(id).subscribe(() => {
+          this.atualizarProdutos(
+            this.paginator.pageIndex,
+            this.paginator.pageSize
+          );
+        });
+      }
     });
   }
 
