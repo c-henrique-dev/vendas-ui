@@ -1,19 +1,19 @@
 <div class="container">
-    <h1>Meus Pedidos</h1>
-    <mat-card *ngFor="let pedido of pedidos " class="example-card">
-        <mat-card-header>
-          <mat-card-title-group>
-            <mat-card-title>{{pedido.status}}</mat-card-title>
-            <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
-          </mat-card-title-group>
-        </mat-card-header>
-        <mat-card-content>
-            <div>
-              {{pedido.nomeUsuario}}
-            </div>
-            <div>
-              {{pedido.dataPedido}}
-            </div>
-        </mat-card-content>
-      </mat-card>
+  <h1>Meus Pedidos</h1>
+  <mat-card *ngFor="let pedido of pedidos " class="example-card">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>{{pedido.status}}</mat-card-title>
+        <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        {{pedido.nomeUsuario}}
+      </div>
+      <div>
+        {{pedido.dataPedido}}
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>

@@ -1,12 +1,10 @@
-<div class="flex mx-auto justify-center items-center h-screen bg-slate-300">
-  
+<div class=" w-full flex mx-auto justify-center items-center h-screen bg-purple-900">
   <form class="max-w-96" [formGroup]="loginForm">
-  
     <div class="flex justify-center">
-    <div>
-      <img class="w-28" src="assets/imagens/usuario.png" alt="">
-   </div>   
-  </div>  
+      <div>
+        <img class="w-28" src="assets/imagens/usuario.png" alt="">
+      </div>
+    </div>
 
     <mat-form-field class="w-full mt-7">
       <mat-label>Email</mat-label>
@@ -21,10 +19,11 @@
       <mat-error>Please enter a valid email address</mat-error>
       <mat-error>Email is <strong>required</strong></mat-error>
     </mat-form-field>
-  
+
     <div class="flex">
       <button class="w-52" mat-raised-button color="primary" (click)="login()">Entrar</button>
-      <button class="w-52 ml-2" mat-raised-button color="primary" (click)="exibirDialogCadastroUsuario()">Cadastrar-se</button>
+      <button class="w-52 ml-2" mat-raised-button color="primary"
+        (click)="exibirDialogCadastroUsuario()">Cadastrar-se</button>
     </div>
   </form>
 </div>

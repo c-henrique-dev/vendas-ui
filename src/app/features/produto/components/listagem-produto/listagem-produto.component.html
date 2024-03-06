@@ -1,16 +1,12 @@
-<div class="card-container">
-  <mat-card class="example-card" *ngFor="let produto of produtos">
-    <div class="card-content">
-      <img style="cursor: pointer; width: 295px; height: 170px;" [routerLink]="['/produto', produto.id]" mat-card-image [src]="produto.nomeImagem" alt="Photo of a Shiba Inu">
-      <mat-card-content style="margin-top: 20px;">
-        <div>
-          <p class="produto-descricao">
-            {{produto.nomeProduto}}
-          </p>
-          <p class="produto-preco">
-            {{produto.precoUnitario | currency: 'BRL'}}
-          </p>
-        </div>
+<div class="flex justify-center min-h-full">
+  <div class="grid grid-cols-2 sm:grid-cols-4">
+    <mat-card class="w-56 h-56 mx-2 mt-5 mb-5 box-border overflow-hidden sm:w-72 sm:h-72"
+      *ngFor="let produto of produtos">
+      <img class="cursor-pointer w-72 h-40" [routerLink]="['/produto', produto.id]" mat-card-image
+        [src]="produto.nomeImagem" alt="Photo of a Shiba Inu">
+      <mat-card-content class="mt-2">
+        <p class="text-base overflow-hidden text-ellipsis whitespace-nowrap">{{produto.nomeProduto}}</p>
+        <p class="text-base font-bold">{{produto.precoUnitario | currency: 'BRL'}}</p>
       </mat-card-content>
       <mat-card-actions>
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
@@ -25,14 +21,17 @@
             <mat-icon>delete</mat-icon>
             <span>Excluir</span>
           </button>
-          <input type="file" (change)="adicionarImagem(produto.id, $event)" style="display: none;" #fileInput>
+          <input class="hidden" type="file" (change)="adicionarImagem(produto.id, $event)" #fileInput>
           <button mat-menu-item (click)="fileInput.click()">
             <mat-icon>attach_file</mat-icon>
             <span>Adicionar Imagem</span>
-          </button>      
-         </mat-menu>
+          </button>
+        </mat-menu>
       </mat-card-actions>
-    </div>
-  </mat-card>
+    </mat-card>
+  </div>
 </div>
-
+<div class="flex justify-center">
+  <mat-paginator [length]="totalProdutos" [pageSize]="8"
+    (page)="atualizarProdutos($event.pageIndex, $event.pageSize)"></mat-paginator>
+</div>

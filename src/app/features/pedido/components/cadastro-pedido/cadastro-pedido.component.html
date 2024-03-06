@@ -1,7 +1,7 @@
-<div class="flex flex-col items-center mt-4 h-full">
+<div class="flex flex-col items-center mt-4 min-h-full">
   <h1>Finalize Seu Pedido!</h1>
   <form class="example-form" [formGroup]="formPedido">
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="example-full-width mr-3">
       <mat-label>Pagamento</mat-label>
       <mat-select formControlName="pagamento">
         <mat-option>Pagamento</mat-option>
@@ -11,7 +11,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field style="margin-left: 10px;" class="example-full-width">
+    <mat-form-field class="example-full-width">
       <mat-label>Parcelas</mat-label>
       <mat-select formControlName="parcelas">
         <mat-option>Parcelas</mat-option>
@@ -23,14 +23,30 @@
         <mat-option value="6">6x</mat-option>
       </mat-select>
     </mat-form-field>
+    
+    <div class="flex flex-col mb-2" *ngIf="estaVazio == false">
+      <button class="text-lg mb-3" color="primary" mat-raised-button (click)="salvarPedido()">
+        Finalizar Pedido
+      </button>
+    </div>
     <div>
-      <ul style="list-style: none; padding: 0; margin: 0;" *ngFor="let item of itens">
-        <li style="font-size: 16px; margin-bottom: 8px;">Produto: {{item.produto.nomeProduto}}</li>
-        <li style="font-size: 16px; margin-bottom: 8px;">Preço: {{item.produto.precoUnitario | currency: 'BRL'}}</li>
-        <li style="font-size: 16px; margin-bottom: 8px;">Quantidade: {{item.quantidade}}</li>
-        <mat-divider></mat-divider>
+      <ul *ngFor="let item of itens">
+        <li class="text-base mb-2">
+          Produto: {{ item.produto.nomeProduto }}
+        </li>
+        <li class="text-base mb-2">
+          Preço: {{ item.produto.precoUnitario | currency : "BRL" }}
+        </li>
+        <li class="text-base mb-2">
+          Quantidade: {{ item.quantidade }}
+        </li>
+        <div class="flex flex-col items-center mb-4 mt-4">
+          <button class="w-full" mat-raised-button color="primary" (click)="excluirItemDoCarrinho(item.produto.id)">
+            <mat-icon>delete</mat-icon>
+            <span>Excluir</span>
+          </button>
+        </div>
       </ul>
     </div>
-    <button class="text-lg mb-4 mt-4" color="primary" mat-raised-button (click)="salvarPedido()">Finalizar Pedido</button>
   </form>
 </div>

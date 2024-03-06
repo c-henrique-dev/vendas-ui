@@ -1,10 +1,11 @@
-<mat-toolbar color="primary" *ngIf="estaLogado">
-  <button class="md:invisible" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+<mat-toolbar style="height: 80px;" color="primary" *ngIf="estaLogado">
+  <span>Vendas</span>
+  <button class="sm:invisible" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <div class="no-underline m-2 cursor-pointer ">
-      <a class="" routerLink="home" mat-menu-item>Home</a>
+    <div class="m-2 cursor-pointer ">
+      <a routerLink="home" mat-menu-item>Home</a>
     </div>
     <button mat-menu-item [matMenuTriggerFor]="submenu">
       <span>Produto</span>
@@ -24,8 +25,15 @@
       <a (click)="sair()" style="cursor: pointer" mat-menu-item>Sair</a>
     </div>
   </mat-menu>
-  <span>Vendas</span>
-  <div class="md:flex justify-end w-screen hidden">
+  <div class="mt-5">
+      <mat-form-field class="w-48 sm:w-96">
+        <input matInput placeholder="Procure por um produto" [(ngModel)]="inputValue" name="inputValue"  />
+        <button class="example-full-width" mat-button matSuffix (click)="pesquisar()" color="primary">
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+  </div>
+  <div class="md:flex ml-auto hidden">
     <div class="no-underline m-2 cursor-pointer ">
       <a class="" routerLink="home">Home</a>
     </div>
@@ -45,12 +53,12 @@
     <div class="no-underline m-2 cursor-pointer">
       <a routerLink="pedido/detalhes">Pedidos</a>
     </div>
-    <div style="margin-right: 30px;" class="no-underline m-2 cursor-pointer">
+    <div class="mr-5 no-underline m-2 cursor-pointer">
       <a (click)="sair()" style="cursor: pointer">Sair</a>
     </div>
-    <div class="no-underline m-2 cursor-pointer">
-      <a routerLink="pedido" style="cursor: pointer;"><mat-icon matBadge="{{listarItensDoCarrinho().length}}"
-          matBadgeColor="warn">shopping_cart</mat-icon></a>
-    </div>
+  </div>
+  <div class="flex justify-end cursor-pointer w-screen md:w-min mr-2">
+    <a routerLink="pedido" style="cursor: pointer;"><mat-icon matBadge="{{ tamanho }}"
+        matBadgeColor="warn">shopping_cart</mat-icon></a>
   </div>
 </mat-toolbar>
