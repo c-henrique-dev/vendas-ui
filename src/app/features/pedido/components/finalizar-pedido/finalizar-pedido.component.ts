@@ -11,10 +11,10 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pedido',
-  templateUrl: './cadastro-pedido.component.html',
-  styleUrls: ['./cadastro-pedido.component.scss'],
+  templateUrl: './finalizar-pedido.component.html',
+  styleUrls: ['./finalizar-pedido.component.scss'],
 })
-export class CadastroPedidoComponent implements OnInit {
+export class FinalizarPedidoComponent implements OnInit {
   formPedido!: FormGroup;
   itens!: Item[];
   pedido!: Pedido;

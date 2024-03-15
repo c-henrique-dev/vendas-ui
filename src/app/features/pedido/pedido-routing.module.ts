@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CadastroPedidoComponent } from './components/cadastro-pedido/cadastro-pedido.component';
+import { FinalizarPedidoComponent } from './components/finalizar-pedido/finalizar-pedido.component';
 import { ListagemPedidoComponent } from './components/listagem-pedido/listagem-pedido.component';
 
 const routes: Routes = [
-  {path: '', component: CadastroPedidoComponent},
+  {path: '', component: FinalizarPedidoComponent},
   {path: 'detalhes', component: ListagemPedidoComponent}
 ];
 
