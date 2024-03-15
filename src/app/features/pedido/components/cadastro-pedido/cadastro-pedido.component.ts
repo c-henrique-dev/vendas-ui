@@ -20,6 +20,7 @@ export class CadastroPedidoComponent implements OnInit {
   pedido!: Pedido;
   id!: number;
   estaVazio = true;
+  total!: number;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,14 +34,9 @@ export class CadastroPedidoComponent implements OnInit {
   ngOnInit(): void {
     this.criarFormulario();
 
-    this.carrinhoService.obterItensCarrinho().subscribe((itens) => {
-      this.itens = itens;
-      this.estaVazio = this.itens.length === 0;
-    });
+    this.obterItensCarrinho();
 
-    this.carrinhoService.getCarrinhoAtualizado().subscribe((quantidade) => {
-      this.estaVazio = quantidade === 0;
-    });
+    this.obterCarrinhoAtualizado();
 
     this.autenthicationService.obterUsuarioLogado().subscribe((usuario) => {
       this.id = usuario.id || 0;
@@ -54,6 +50,13 @@ export class CadastroPedidoComponent implements OnInit {
       .subscribe((resposta) => {
         this.snackBarService.open('Pedido realizado com sucesso!');
       });
+  }
+
+  criarFormulario() {
+    this.formPedido = this.formBuilder.group({
+      pagamento: ['', Validators.required],
+      parcelas: ['', Validators.required],
+    });
   }
 
   salvarPedido() {
@@ -78,7 +81,7 @@ export class CadastroPedidoComponent implements OnInit {
         });
       });
     }
-    
+
     this.router.navigate(['pedido/detalhes']);
   }
 
@@ -87,15 +90,31 @@ export class CadastroPedidoComponent implements OnInit {
       this.carrinhoService.removerItemDoCarrinho(id).subscribe((resposta) => {
         this.carrinhoService.obterItensCarrinho().subscribe((itens) => {
           this.itens = itens;
+          this.total = itens.reduce(
+            (acumulador, item) =>
+              acumulador + item.produto.precoUnitario * item.quantidade,
+            0
+          );
         });
       });
     }
   }
 
-  criarFormulario() {
-    this.formPedido = this.formBuilder.group({
-      pagamento: ['', Validators.required],
-      parcelas: ['', Validators.required],
+  obterItensCarrinho() {
+    this.carrinhoService.obterItensCarrinho().subscribe((itens) => {
+      this.itens = itens;
+      this.estaVazio = this.itens.length === 0;
+      this.total = itens.reduce(
+        (acumulador, item) =>
+          acumulador + item.produto.precoUnitario * item.quantidade,
+        0
+      );
+    });
+  }
+
+  obterCarrinhoAtualizado() {
+    this.carrinhoService.getCarrinhoAtualizado().subscribe((quantidade) => {
+      this.estaVazio = quantidade === 0;
     });
   }
 }

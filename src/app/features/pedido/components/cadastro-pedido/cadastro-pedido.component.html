@@ -10,7 +10,6 @@
         <mat-option value="PIX">Pix</mat-option>
       </mat-select>
     </mat-form-field>
-
     <mat-form-field class="example-full-width">
       <mat-label>Parcelas</mat-label>
       <mat-select formControlName="parcelas">
@@ -23,9 +22,13 @@
         <mat-option value="6">6x</mat-option>
       </mat-select>
     </mat-form-field>
-    
+    <div class="mb-5 ">
+      <p>Valor Total: {{total | currency}}</p>
+    </div>
     <div class="flex flex-col mb-2" *ngIf="estaVazio == false">
-      <button class="text-lg mb-3" color="primary" mat-raised-button (click)="salvarPedido()">
+      <button
+        class="text-lg font-medium mb-3 text-white bg-slate-500 hover:bg-slate-600 transition duration-300 py-1 rounded-md"
+        (click)="salvarPedido()">
         Finalizar Pedido
       </button>
     </div>
@@ -40,10 +43,12 @@
         <li class="text-base mb-2">
           Quantidade: {{ item.quantidade }}
         </li>
-        <div class="flex flex-col items-center mb-4 mt-4">
-          <button class="w-full" mat-raised-button color="primary" (click)="excluirItemDoCarrinho(item.produto.id)">
+        <div class="mb-4 mt-4">
+          <button
+            class="flex items-center justify-center w-full font-medium text-lg mb-3 text-white bg-slate-500 hover:bg-slate-600 transition duration-300 py-1 rounded-md"
+            (click)="excluirItemDoCarrinho(item.produto.id)">
             <mat-icon>delete</mat-icon>
-            <span>Excluir</span>
+            Excluir
           </button>
         </div>
       </ul>
