@@ -3,7 +3,7 @@
   <form class="grid grid-cols-2 example-form" [formGroup]="formProduto">
     <mat-form-field class="example-full-width">
       <mat-label>Nome Produto</mat-label>
-      <input matInput placeholder="Nome do produto" formControlName="nomeProduto">
+      <input style="border-radius: 50px;" matInput placeholder="Nome do produto" formControlName="nomeProduto">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
@@ -22,7 +22,7 @@
     </mat-form-field>
 
     <div class="ml-2">
-      <button mat-raised-button color="primary" (click)="salvarProduto()">Salvar</button>
+      <button class="py-2 px-5 text-sm font-medium rounded-md text-white bg-slate-500 hover:bg-slate-600 transition duration-300" (click)="salvarProduto()">Salvar</button>
     </div>
   </form>
 </div>
