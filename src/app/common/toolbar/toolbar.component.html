@@ -1,4 +1,4 @@
-<mat-toolbar style="height: 80px;" color="primary" *ngIf="estaLogado">
+<mat-toolbar *ngIf="estaLogado">
   <span>Vendas</span>
   <button class="sm:invisible" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
     <mat-icon>more_vert</mat-icon>
@@ -25,21 +25,20 @@
       <a (click)="sair()" style="cursor: pointer" mat-menu-item>Sair</a>
     </div>
   </mat-menu>
-  <div class="mt-5">
-      <mat-form-field class="w-48 sm:w-96">
-        <input matInput placeholder="Procure por um produto" [(ngModel)]="inputValue" name="inputValue"  />
-        <button class="example-full-width" mat-button matSuffix (click)="pesquisar()" color="primary">
-          <mat-icon>search</mat-icon>
-        </button>
-      </mat-form-field>
+  <div class="relative">
+    <input class="w-full p-1 text-base rounded-lg outline-none pr-14 pb-2 pt-2" type="text"
+      placeholder="Procure por um produto" [(ngModel)]="inputValue" name="inputValue"  />
+    <button class="absolute inset-y-0 right-0 flex items-center justify-center px-2" (click)="pesquisar()">
+      <mat-icon>search</mat-icon>
+    </button>
   </div>
   <div class="md:flex ml-auto hidden">
-    <div class="no-underline m-2 cursor-pointer ">
-      <a class="" routerLink="home">Home</a>
+    <div class="no-underline cursor-pointer ">
+      <a class="p-2 rounded-md transition-colors duration-500 hover:bg-slate-400" routerLink="home">Home</a>
     </div>
-    <div class="no-underline m-2 cursor-pointer">
+    <div class="no-underline cursor-pointer">
       <mat-list-item>
-        <a class="text-slate-50" [matMenuTriggerFor]="produto">
+        <a class="p-2 rounded-md transition-colors duration-500 hover:bg-slate-400" [matMenuTriggerFor]="produto">
           Produto
         </a>
         <mat-menu #produto="matMenu">
@@ -50,11 +49,13 @@
         </mat-menu>
       </mat-list-item>
     </div>
-    <div class="no-underline m-2 cursor-pointer">
-      <a routerLink="pedido/detalhes">Pedidos</a>
+    <div class="no-underline cursor-pointer">
+      <a class="p-2 rounded-md transition-colors duration-500 hover:bg-slate-400"
+        routerLink="pedido/detalhes">Pedidos</a>
     </div>
-    <div class="mr-5 no-underline m-2 cursor-pointer">
-      <a (click)="sair()" style="cursor: pointer">Sair</a>
+    <div class="mr-5 no-underline cursor-pointer">
+      <a class="p-2 rounded-md transition-colors duration-500 hover:bg-slate-400" (click)="sair()"
+        style="cursor: pointer">Sair</a>
     </div>
   </div>
   <div class="flex justify-end cursor-pointer w-screen md:w-min mr-2">
