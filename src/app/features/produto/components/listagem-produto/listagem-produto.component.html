@@ -1,4 +1,7 @@
 <div class="flex justify-center min-h-full">
+  <div class="flex justify-center items-center" *ngIf="produtos.length == 0">
+    <h1>Produto não encontrado</h1>
+  </div>
   <div class="grid grid-cols-2 sm:grid-cols-4">
     <mat-card class="w-56 h-56 mx-2 mt-5 mb-5 box-border overflow-hidden sm:w-72 sm:h-72"
       *ngFor="let produto of produtos">
