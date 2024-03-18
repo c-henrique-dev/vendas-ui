@@ -1,0 +1,14 @@
+<div class="flex items-center flex-col h-full">
+  <div class="mt-7 w-72 text-center">
+    <ul *ngFor="let item of itens" class="border rounded-lg mb-4">
+      <li class="text-base mb-2 mt-3">
+        Produto: {{ item.produto.nomeProduto }}
+      </li>
+      <li class="text-base mb-2">
+        Preço: {{ item.produto.precoUnitario | currency : "BRL" }}
+      </li>
+      <li class="text-base mb-7">Quantidade: {{ item.quantidade }}</li>
+    </ul>
+     <p class="text-base">O valor total é: {{total | currency}}</p>
+  </div>
+</div>

@@ -42,6 +42,13 @@ const routes: Routes = [
       import('./features/pedido/pedido.module').then((m) => m.PedidoModule),
     canActivate: [AuthGuard],
   },
+
+  {
+    path: 'item',
+    loadChildren: () =>
+      import('./features/item/item.module').then((m) => m.ItemModule),
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
