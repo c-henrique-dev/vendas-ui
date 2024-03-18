@@ -3,13 +3,13 @@
     <h1>Produto não encontrado</h1>
   </div>
   <div class="grid grid-cols-2 sm:grid-cols-4">
-    <mat-card class="w-56 h-56 mx-2 mt-5 mb-5 box-border overflow-hidden sm:w-72 sm:h-72"
+    <mat-card class="w-56 h-56 mx-2 mt-5 mb-5 box-border overflow-hidden sm:w-72 sm:h-72 sm:transition-transform sm:duration-300 sm:transform sm:hover:scale-110"
       *ngFor="let produto of produtos">
-      <img class="cursor-pointer w-72 h-40" [routerLink]="['/produto', produto.id]" mat-card-image
+      <img class="cursor-pointer w-52 h-40 ml-10" [routerLink]="['/produto', produto.id]" mat-card-image
         [src]="produto.nomeImagem" alt="Photo of a Shiba Inu">
       <mat-card-content class="mt-2">
         <p class="text-base overflow-hidden text-ellipsis whitespace-nowrap">{{produto.nomeProduto}}</p>
-        <p class="text-base font-bold">{{produto.precoUnitario | currency: 'BRL'}}</p>
+        <p class="text-base font-medium">{{produto.precoUnitario | currency: 'BRL'}}</p>
       </mat-card-content>
       <mat-card-actions>
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
