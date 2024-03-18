@@ -33,8 +33,12 @@ export class ListagemProdutoComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRouter.queryParams.subscribe((params) => {
       this.nomeProduto = params['nome'];
-
-      this.atualizarProdutos(this.paginator.pageIndex, this.paginator.pageSize);
+      if (this.paginator) {
+        this.atualizarProdutos(
+          this.paginator.pageIndex,
+          this.paginator.pageSize
+        );
+      }
     });
   }
 
@@ -44,6 +48,7 @@ export class ListagemProdutoComponent implements OnInit {
       .subscribe((result) => {
         this.produtos = result.content;
         this.totalProdutos = result.totalElements;
+        console.log(this.produtos)
       });
   }
 
