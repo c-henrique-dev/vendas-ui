@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private snackBarService: SnackBarService,
-    private dialog: MatDialog,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -53,8 +53,8 @@ export class LoginComponent implements OnInit {
 
   exibirDialogCadastroUsuario() {
     this.dialog.open(CadastroUsuarioComponent, {
-      data: { titulo: "Cadastrar Usuário" },
-      height: "60%",
+      data: { titulo: 'Cadastrar Usuário' },
+      height: '60%',
     });
   }
 }

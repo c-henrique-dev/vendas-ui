@@ -1,4 +1,4 @@
-<div class=" w-full flex mx-auto justify-center items-center h-screen bg-purple-900">
+<div class=" w-full flex mx-auto justify-center items-center h-screen bg-slate-300">
   <form class="max-w-96" [formGroup]="loginForm">
     <div class="flex justify-center">
       <div>
@@ -9,20 +9,18 @@
     <mat-form-field class="w-full mt-7">
       <mat-label>Email</mat-label>
       <input type="email" matInput placeholder="Ex. pat@example.com" formControlName="login">
-      <mat-error>Please enter a valid email address</mat-error>
-      <mat-error>Email is <strong>required</strong></mat-error>
+      <mat-error>Insira um e-mail válido</mat-error>
     </mat-form-field>
 
     <mat-form-field class="w-full">
       <mat-label>Password</mat-label>
       <input type="password" matInput formControlName="senha">
-      <mat-error>Please enter a valid email address</mat-error>
-      <mat-error>Email is <strong>required</strong></mat-error>
+      <mat-error>O campo senha é <strong>obrigatório</strong></mat-error>
     </mat-form-field>
 
     <div class="flex">
-      <button class="w-52" mat-raised-button color="primary" (click)="login()">Entrar</button>
-      <button class="w-52 ml-2" mat-raised-button color="primary"
+      <button class="w-52 py-2 px-5 text-sm font-medium rounded-md text-white bg-slate-500 hover:bg-slate-600 transition duration-300" (click)="login()">Entrar</button>
+      <button class="w-52 ml-2 py-2 px-5 text-sm font-medium rounded-md text-white bg-slate-500 hover:bg-slate-600 transition duration-300"
         (click)="exibirDialogCadastroUsuario()">Cadastrar-se</button>
     </div>
   </form>
