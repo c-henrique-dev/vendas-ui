@@ -19,7 +19,7 @@
       </button>
     </mat-menu>
     <div class="no-underline m-2 cursor-pointer ">
-      <a class="" routerLink="pedido/detalhes" mat-menu-item>Pedidos</a>
+      <a class="" routerLink="pedido" mat-menu-item>Pedidos</a>
     </div>
     <div class="no-underline m-2 cursor-pointer ">
       <a (click)="sair()" style="cursor: pointer" mat-menu-item>Sair</a>
@@ -33,10 +33,10 @@
     </button>
   </div>
   <div class="md:flex ml-auto hidden">
-    <div class="no-underline cursor-pointer ">
+    <div class="no-underline cursor-pointer mr-3">
       <a class="p-2 rounded-md transition-colors duration-500 hover:bg-slate-400" routerLink="home">Home</a>
     </div>
-    <div class="no-underline cursor-pointer">
+    <div class="no-underline cursor-pointer mr-3">
       <mat-list-item>
         <a class="p-2 rounded-md transition-colors duration-500 hover:bg-slate-400" [matMenuTriggerFor]="produto">
           Produto
@@ -49,17 +49,17 @@
         </mat-menu>
       </mat-list-item>
     </div>
-    <div class="no-underline cursor-pointer">
+    <div class="no-underline cursor-pointer mr-3">
       <a class="p-2 rounded-md transition-colors duration-500 hover:bg-slate-400"
-        routerLink="pedido/detalhes">Pedidos</a>
+        routerLink="pedido">Pedidos</a>
     </div>
-    <div class="mr-5 no-underline cursor-pointer">
+    <div class="no-underline cursor-pointer mr-3">
       <a class="p-2 rounded-md transition-colors duration-500 hover:bg-slate-400" (click)="sair()"
         style="cursor: pointer">Sair</a>
     </div>
   </div>
   <div class="flex justify-end cursor-pointer w-screen md:w-min mr-2">
-    <a routerLink="pedido" style="cursor: pointer;"><mat-icon matBadge="{{ tamanho }}"
+    <a routerLink="pedido/finalizar" style="cursor: pointer;"><mat-icon matBadge="{{ tamanho }}"
         matBadgeColor="warn">shopping_cart</mat-icon></a>
   </div>
 </mat-toolbar>
