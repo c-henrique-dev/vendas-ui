@@ -1,10 +1,10 @@
-<div class="container">
+<div class="h-full ml-4">
   <h1>Meus Pedidos</h1>
-  <mat-card *ngFor="let pedido of pedidos " class="example-card">
+  <mat-card [routerLink]="['/pedido/itens', pedido.codigo]" *ngFor="let pedido of pedidos " class="example-card">
     <mat-card-header>
       <mat-card-title-group>
         <mat-card-title>{{pedido.status}}</mat-card-title>
-        <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+        <img mat-card-sm-image src="assets/imagens/pedido.png">
       </mat-card-title-group>
     </mat-card-header>
     <mat-card-content>

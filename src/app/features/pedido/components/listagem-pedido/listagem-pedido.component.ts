@@ -4,6 +4,7 @@ import { AuthenticationService } from 'src/app/common/auth/service/authenticatio
 import { lastValueFrom } from 'rxjs';
 import { Login } from 'src/app/common/auth/models/login.interface';
 import { PedidoDetalhes } from '../../model/pedido-detalhes.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar',
@@ -16,7 +17,8 @@ export class ListagemPedidoComponent implements OnInit {
 
   constructor(
     private pedidoService: PedidoService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private router: Router,
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -29,6 +31,12 @@ export class ListagemPedidoComponent implements OnInit {
 
   buscarPedidoPeloLogin() {
     return this.pedidoService.getPedidoPeloLogin(this.login.login);
+  }
+
+  chamarDetalheItens(pedido: PedidoDetalhes) {
+    if (pedido != undefined) {
+      this.router.navigate(['item', pedido.codigo]);
+    }
   }
 
 }
