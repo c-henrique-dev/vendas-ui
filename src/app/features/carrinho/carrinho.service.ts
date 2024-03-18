@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
-import { Item } from 'src/app/features/pedido/model/item.model';
+import { Item } from '../item/model/item.model';
 
 @Injectable({
   providedIn: 'root',

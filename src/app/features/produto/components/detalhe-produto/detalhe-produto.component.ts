@@ -3,8 +3,8 @@ import { ProdutoService } from '../../service/produto.service';
 import { Produto } from '../../models/produto.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CarrinhoService } from 'src/app/features/carrinho/carrinho.service'; 
-import { Item } from 'src/app/features/pedido/model/item.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Item } from 'src/app/features/item/model/item.model';
 
 @Component({
   selector: 'app-detalhe',

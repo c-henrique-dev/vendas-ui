@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CarrinhoService } from 'src/app/features/carrinho/carrinho.service';
-import { Item } from '../../model/item.model';
 import { AuthenticationService } from 'src/app/common/auth/service/authentication.service';
 import { Pedido } from '../../model/pedido.model';
 import { PedidoService } from '../../service/pedido.service';
 import { SnackBarService } from 'src/app/shared/snack-bar/snack-bar.service';
 import { PedidoSalvar } from '../../model/pedido-salvar.model';
 import { Router } from '@angular/router';
+import { Item } from '../../../item/model/item.model';
 
 @Component({
   selector: 'app-pedido',

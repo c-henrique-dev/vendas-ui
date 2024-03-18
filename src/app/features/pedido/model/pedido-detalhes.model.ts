@@ -1,4 +1,4 @@
-import { Item } from "./item.model";
+import { Item } from "../../item/model/item.model";
 
 export interface PedidoDetalhes {
     codigo: number,

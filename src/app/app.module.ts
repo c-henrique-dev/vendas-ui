@@ -11,7 +11,6 @@ import { ToolbarComponent } from './common/toolbar/toolbar.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { HomeComponent } from './common/home/home.component';
 import { MatBadgeModule } from '@angular/material/badge';
-import { ItemComponent } from './features/item/components/item.component';
 
 @NgModule({
   declarations: [AppComponent, ToolbarComponent, FooterComponent, HomeComponent],

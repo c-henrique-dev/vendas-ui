@@ -1,4 +1,4 @@
-import { ItemSalvar } from "./item-salvar.model";
+import { ItemSalvar } from "../../item/model/item-salvar.model";
 
 export interface PedidoSalvar {
     usuario: number;
