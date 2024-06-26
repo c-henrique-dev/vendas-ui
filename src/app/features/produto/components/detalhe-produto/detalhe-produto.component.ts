@@ -65,6 +65,6 @@ export class DetalheProdutoComponent implements OnInit{
       quantidade: this.meuFormulario.controls['quantidade'].value,
     };
     this.carrinhoService.adicionarItemAoCarrinho(item);
-    this.router.navigate(['pedido']);
+    this.router.navigate(['pedido/finalizar']);
   }
 }
